@@ -16,7 +16,7 @@ To integrate the Android Intelligence SDK into your application, you will need t
 repositories {
     maven {
         name = "ws1-intelligencesdk-sdk-android"
-        url = "https://maven.pkg.github.com/euc-releases/ws1-intelligencesdk-sdk-android/"
+        url = "https://maven.pkg.github.com/euc-releases/Android-WorkspaceONE-SDK/"
         // Here you will enter your Github Credentials
         credentials {
             username = "${GITHUB_USERNAME}"
@@ -95,15 +95,6 @@ When integrating the Intelligence SDK alongside the Workspace ONE SDK, we must m
 repositories {
     maven {
         name = "ws1-intelligencesdk-sdk-android"
-        url = "https://maven.pkg.github.com/euc-releases/ws1-intelligencesdk-sdk-android/"
-        // Here you will enter your Github Credentials
-        credentials {
-            username = "${GITHUB_USERNAME}"
-            password = "$GITHUB_PERSONAL_ACCESS_TOKEN"
-        }
-    }
-    maven {
-        name = "Android-WorkspaceONE-SDK"
         url = "https://maven.pkg.github.com/euc-releases/Android-WorkspaceONE-SDK/"
         // Here you will enter your Github Credentials
         credentials {
@@ -124,16 +115,14 @@ android {
 }
 
 def ws1IntelSdkVersion = "24.11.0"
-def ws1SdkVersion = "24.01"
+def ws1SdkVersion = "24.11"
 
 dependencies {
     // Declare a dependency on the Intelligence SDK
     implementation "com.ws1:ws1intelligencesdk:$ws1IntelSdkVersion"
     // WS1 Dependency
     implementation("com.airwatch.android:AWFramework:$ws1SdkVersion"){
-        // Need following excludes as they are duplicated in Workspace ONE SDK
-        exclude group: 'com.airwatch.android', module: 'awApteligentBridge'
-        exclude group: 'com.crittercism'
+        // Need following excludes as they may be duplicated in Workspace ONE SDK
         exclude group: 'org.jetbrains.kotlinx', module: 'kotlinx-serialization-runtime'
     }
 }
