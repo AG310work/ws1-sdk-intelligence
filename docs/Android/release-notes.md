@@ -6,11 +6,54 @@ hide:
   - toc
 ---
 
-Updated on 12/18/2024
+Updated on 2/10/2025
 
 What's in the Release Notes
 
 Omnissa Intelligence SDK for Android Release Notes describe the new features and enhancements in each release. This page contains a summary of the new capabilities, issues that have been resolved, and known issues that have been reported in each release. 
+
+## Omnissa Intelligence SDK 25.1.0 for Android - February 10, 2025
+
+### Minimum Requirements
+
+- Android 7.0 or later
+- API Level 24 or later
+- Workspace ONE UEM Console 2109 or later
+- Android Studio with the Gradle Android Build System (Gradle) 8.2.2 or later
+
+### New Features
+
+- New DEX Telemetry entity added: App Usage Metrics
+    - Entity Name: "app_usage_metrics"
+    - The App Usage Metrics entity captures daily usage and performance metrics for applications running on the device. Each day, the top 30 applications are retrieved based on foreground usage time. Historical data is fetched for the prior days (does not include the current day) up to the last fetch time. The data is only fetched for a maximum of 7 days in the case the host app has not been opened for more than 7 days.
+    - App Usage Attributes:
+      - app_name - Name of the app.
+      - app_version - Version of the app.
+      - app_usage_date_time - Starting timestamp at which the app usage was computed of the app.
+      - total_time_in_foreground - Total time the app spent in the foreground.
+      - count_of_foreground_events - Number of times the app was foregrounded.
+      - average_time_in_foreground - Average foreground session duration of the app.
+      - longest_app_session - Longest session duration the app was in the foreground.
+      - shortest_app_session - Shortest session duration the app was in the foreground.
+      - battery_drain - Average battery drain per hour of the app.
+      - data_usage - Total network data (transmitted and received) usage of the app.
+
+    - Privacy flag for App Usage Metrics has been added. The flag structure will follow the format below - 
+      ``` JSON
+      "AppUsageData": {
+        "DisableAll": false
+      }
+      ```
+    - NOTE:
+      - Callers must have the Android PACKAGE_USAGE_STATS and QUERY_ALL_PACKAGES (for API Level 30+) permissions in order to fetch full app usage data on the device.
+      - Battery Drain recordings to be scheduled by Android WorkManager while the device runs after TelemetrySDK first started or the device is rebooted if App Usage Metrics Permissions allowed. SDK will initialize WorkManager with default configurations if application has disabled automatic initialization, If application intends to initialize WorkManager with a specific configuration, it is recommended to do so before starting the TelemetrySDK.
+      - AppUsageData only responds to DisableAll key value pair and does not honor AttributesToDisable, EventsToDisable KVP’s. Either the entire entity should be enabled or disabled. Disabling / enabling individual attributes within AppUsageData is not possible. 
+
+### Known Issues
+
+- Instrumented URLConnection Classes network request elapsed time inaccurate. 
+- Application Lifecycle Breadcrumbs for “Foreground”, “Background” events may be inaccurate.
+
 
 ## Omnissa Intelligence SDK 24.11.0 for Android - December 18, 2024
 
