@@ -150,6 +150,7 @@ nav:
   - Omnissa Intelligence SDK for Android: 
     - ./Android/index.md
     - Installing the Android SDK: ./Android/android-install.md
+    - Enabling App Usage Metrics: ./Android/android-usage-metrics.md
     - Network Insights: ./Android/android-apm.md
     - Sending UEM Attributes To Intelligence SDK: ./Android/android-integrate-ws1sdk.md
     - SDK Modules:

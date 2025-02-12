@@ -59,6 +59,7 @@ Some features are available as soon as you integrate Omnissa Intelligence SDK in
 
 ### Other Features
 
+- [Enabled App Usage Metrics](android-usage-metrics.md)
 - [Detecting a Crash Occurred](crittercism.md#detecting-a-crash-occurred)
 - [Delay Sending App Load Data](crittercism.md#delay-sending-app-load-data)
 - [Opt In Status](crittercism.md#opt-in-status)
