@@ -9,11 +9,76 @@ hide:
 
 ---
 
-Updated on 07/06/2026
+Updated on 08/26/2026
 
 What's in the Release Notes
 
 Omnissa Intelligence SDK for Android Release Notes describe the new features and enhancements in each release. This page contains a summary of the new capabilities, issues that have been resolved, and known issues that have been reported in each release. 
+
+## Omnissa WS1 Intelligence SDK 26.8.0 for Android - August 26, 2026
+
+### New Features
+
+#### New DEX Telemetry Attributes: System-On-Chip
+
+New device attributes are available for Android 31 and later devices:
+
+- **SoC Manufacturer**
+  - Name: `soc_manufacturer`
+  - Value: String representing the manufacturer of the device's primary system-on-chip.
+  - Default Return Value: Null
+- **SoC Model**
+  - Name: `soc_model`
+  - Value: String representing the model name of the device's primary system-on-chip.
+  - Default Return Value: Null
+
+#### Telemetry Data Listener APIs
+
+Added telemetry data listener registration for DEX or Zero Trust data and Attributes, Events, or All event types. Callbacks arrive on each telemetry poll cycle. Up to 10 listeners are supported, and listeners can be unregistered.
+
+```java
+public static void registerTelemetryDataListener(
+    @NonNull TelemetryFeature feature,
+    @NonNull TelemetryEventType eventType,
+    @NonNull TelemetryDataListener listener);
+
+public static void unregisterTelemetryDataListener(
+    @NonNull TelemetryDataListener listener);
+```
+
+```kotlin
+fun interface TelemetryDataListener {
+  fun onDataDispatched(data: String?)
+}
+```
+
+```java
+TelemetryDataListener listener = data -> {
+  // Consume the telemetry JSON payload.
+};
+
+Crittercism.registerTelemetryDataListener(
+    TelemetryFeature.DEX,
+    TelemetryEventType.ALL,
+    listener);
+Crittercism.unregisterTelemetryDataListener(listener);
+```
+
+### Enhancements
+
+- WebView instrumentation now uses weak references, removes stale references, and ignores duplicate instrumentation, reducing object-retention and duplicate-hook risks.
+- Improved Android 36 compatibility by modernizing locale and app-specific storage handling and scoping legacy Bluetooth and external-storage permissions to the Android versions where they apply.
+- Compile and Target SDK versions have been increased to 36 from 35.
+- Kotlin version has been upgraded to 2.3.21.
+
+### Bug Fixes
+
+- Fixed CritterWebViewClient JavaScript injection on Android 9 by using `evaluateJavascript` instead of `loadUrl("javascript:...")`, preventing synthetic navigation callbacks, address-bar pollution, and repeated page-loading state.
+- Resolved an issue where `Crittercism.setTelemetryOptInStatus` could become unresponsive under certain authentication conditions.
+
+### Breaking Changes
+
+Region lookup now uses `workspaceone.com` endpoints exclusively. The legacy `vmwservices` fallback and migration probe are removed. Ensure network policies allow the applicable Workspace ONE region endpoints before upgrading.
 
 ## Omnissa Intelligence SDK 26.5.1 for Android - July 6, 2026
 

@@ -726,6 +726,51 @@ See also:
 - [Telemetry Privacy Configuration](privacy-config.md)
 - [Intelligence SDK Allowed Apps](allowed-apps.md)
 
+## registerTelemetryDataListener(feature, eventType, listener)
+
+Registers a listener for telemetry data dispatched on each telemetry poll cycle. The listener can receive DEX or Zero Trust data for Attributes, Events, or All event types. Up to 10 listeners can be registered.
+
+**Declaration**
+```java
+public static void registerTelemetryDataListener(
+    @NonNull TelemetryFeature feature,
+    @NonNull TelemetryEventType eventType,
+    @NonNull TelemetryDataListener listener)
+```
+
+```kotlin
+fun interface TelemetryDataListener {
+    fun onDataDispatched(data: String?)
+}
+```
+
+**Example**
+```java
+TelemetryDataListener listener = data -> {
+    // Consume the telemetry JSON payload.
+};
+
+Crittercism.registerTelemetryDataListener(
+    TelemetryFeature.DEX,
+    TelemetryEventType.ALL,
+    listener);
+```
+
+## unregisterTelemetryDataListener(listener)
+
+Unregisters a previously registered telemetry data listener.
+
+**Declaration**
+```java
+public static void unregisterTelemetryDataListener(
+    @NonNull TelemetryDataListener listener)
+```
+
+**Example**
+```java
+Crittercism.unregisterTelemetryDataListener(listener);
+```
+
 ## generateStatusReport (dataHandler)
 
 Asynchronously generates a status report on the health metrics of the Telemetry Features. Use this API to obtain diagnostics such as telemetry configuration, app permissions status, initialization state, version, data usage against limits, and attribute/entity/event enablement details.

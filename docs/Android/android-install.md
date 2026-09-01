@@ -33,7 +33,7 @@ android {
     }
 }
 
-def ws1IntelSdkVersion = "26.5.1"
+def ws1IntelSdkVersion = "26.8.0"
 
 dependencies {
     // Declare a dependency on the Intelligence SDK
@@ -82,7 +82,7 @@ IntelligenceSDK using the following structure:
         }
    }
    
-    def ws1IntelSdkVersion = "26.5.1"
+    def ws1IntelSdkVersion = "26.8.0"
    
    dependencies {
        // Declare a dependency on the Intelligence SDK
@@ -129,10 +129,10 @@ android {
     }
 }
 
-def ws1IntelSdkVersion = "26.5.1"
+def ws1IntelSdkVersion = "26.8.0"
 
-// NOTE: We do not support WS1 SDK versions lower than 25.07.4.
-def ws1SdkVersion = "25.07.4"
+// NOTE: We do not support WS1 SDK versions lower than 26.06.
+def ws1SdkVersion = "26.06"
 
 dependencies {
     // Declare a dependency on the Intelligence SDK
