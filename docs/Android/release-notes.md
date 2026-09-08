@@ -17,6 +17,14 @@ Omnissa Intelligence SDK for Android Release Notes describe the new features and
 
 ## Omnissa WS1 Intelligence SDK 26.8.0 for Android - August 26, 2026
 
+### Minimum Requirements
+
+- Android 7.0 or later
+- API Level 24 or later
+- Workspace ONE UEM Console 2410+
+- Workspace ONE SDK Version 26.06+
+- Android Studio with the Gradle Android Build System (Gradle) 8.6.0 or later
+
 ### New Features
 
 #### New DEX Telemetry Attributes: System-On-Chip
